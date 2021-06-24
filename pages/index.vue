@@ -1,10 +1,6 @@
 <template>
-  <div class="flex">
-    <Item 
-      v-for="work in works" 
-      :key="work.sys.id"
-      :work="work"
-    />
+  <div class="flex flex-wrap overflow-hidden justify-center">
+    <Item v-for="work in works" :key="work.sys.id" :work="work" />
   </div>
 </template>
 
@@ -16,19 +12,21 @@ const client = createClient()
 
 export default {
   components: {
-    Item
+    Item,
   },
-  asyncData ({params}) {
+  asyncData() {
     return Promise.all([
       client.getEntries({
-        'content_type': 'work',
-        order: '-sys.createdAt'
+        content_type: 'work',
+        order: '-sys.createdAt',
       }),
-    ]).then(([works]) => {
-      return {
-        works: works.items
-      }
-    }).catch(console.error)
-  }
+    ])
+      .then(([works]) => {
+        return {
+          works: works.items,
+        }
+      })
+      .catch(console.error)
+  },
 }
 </script>

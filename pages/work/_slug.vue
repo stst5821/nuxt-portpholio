@@ -12,7 +12,7 @@
       <div class="w-52 h-64 flex-col flex justify-center items-start m-3 text-white">
         <p class="text-center text-xl">{{ work.fields.title }}</p>
         <p class="text-center text-sm">{{ work.fields.category.fields.name }}</p>
-        <p class="text-center text-sm">{{ formatDate(work.fields.date) }}</p>
+        <p class="text-center text-sm">記録日時：{{ formatDate(work.fields.date) }}</p>
       </div>
     </div>
   </div>

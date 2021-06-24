@@ -7,9 +7,7 @@
 <script>
 import Item from '@/components/Item'
 import { createClient } from '~/plugins/contentful.js'
-
 const client = createClient()
-
 export default {
   components: {
     Item,
@@ -17,14 +15,14 @@ export default {
   asyncData({ params }) {
     return Promise.all([
       client.getEntries({
-        content_type: 'work',
-        'fields.category.sys.id': params.id,
+        content_type: 'work', // 取得対象をworkタイプに限定
+        query: params.keyword, // keywordパラメータをいずれかのフィールドに含む記事データのみを抽出
         order: '-sys.createdAt',
       }),
     ])
       .then(([works]) => {
         return {
-          works: works.items,
+          works: works.items, // 取得されたデータを配列worksに入れる
         }
       })
       .catch(console.error)

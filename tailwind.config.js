@@ -1,5 +1,11 @@
 module.exports = {
-  theme: {},
+  theme: {
+    extend: {
+      colors: {
+        'regal-blue': '#0086AB',
+      },
+    },
+  },
   variants: {},
   plugins: [],
   purge: {
